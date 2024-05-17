@@ -1,5 +1,17 @@
 Source: https://www.aii-3.com/wp-content/uploads/2023/01/DevOps-How-to-Reset-Kubernetes-Cluster.pdf
 
+one command
+
+```sh
+kubeadm reset -f
+rm -rf /etc/cni /etc/kubernetes /var/lib/dockershim /var/lib/etcd /var/lib/kubelet /var/run/kubernetes ~/.kube/*
+iptables -F && iptables -X
+iptables -t nat -F && iptables -t nat -X
+iptables -t raw -F && iptables -t raw -X
+iptables -t mangle -F && iptables -t mangle -X
+systemctl restart containerd
+```
+
 Solution
 #Reset kubernetes cluster using kubeadm
 kubeadm reset -f
